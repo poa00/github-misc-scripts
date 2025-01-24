@@ -65,6 +65,16 @@ See the [docs](https://cli.github.com/manual/gh_auth_login) for further informat
 
 ## Scripts
 
+### add-all-organization-members-to-a-team.sh
+
+Adds all members of an organization to a team.
+
+### add-all-users-in-repository-to-project.sh
+
+Adds all users who are direct members of the repository to a ProjectV2 with a given role.
+
+Requires: `./add-user-to-project.sh`
+
 ### add-branch-protection-status-checks.sh
 
 Adds a status check to the branch protection status check contexts.
@@ -107,6 +117,14 @@ Adds an IP to an enterprise's or organization's [IP allow list](https://docs.git
 Use the [get-enterprise-id.sh](./get-enterprise-id.sh) or [get-organization-id.sh](./get-organization-id.sh) script to get the owner ID.
 
 See the [docs](https://docs.github.com/en/graphql/reference/mutations#createipallowlistentry) for further information.
+
+### add-sub-issue-to-issue.sh
+
+Adds a sub-issue (child) to an issue (parent). See: [Community Discussions Post](https://github.com/orgs/community/discussions/139932)
+
+### add-team-to-repositories-from-list.sh
+
+This script adds a specified team to a list of repositories with specified permissions.
 
 ### add-team-to-repository.sh
 
@@ -649,6 +667,10 @@ Queries every organization in an enterprise and returns whether the user is a me
 
 Queries the enterprise for all organizations given the specified role (e.g.: which organizations is the user an admin of)
 
+### get-enterprise-self-hosted-runners.sh
+
+Gets a list of self-hosted runners configured at the enterprise level for an enterprise.
+
 ### get-enterprise-settings.sh
 
 Gets info about an enterprise using the [EnterpriseOwnerInfo](https://docs.github.com/en/graphql/reference/objects#enterpriseownerinfo) GraphQL object.
@@ -656,6 +678,10 @@ Gets info about an enterprise using the [EnterpriseOwnerInfo](https://docs.githu
 ### get-gei-migration-status.sh
 
 Gets the status of a [GitHub Enterprise Importer (GEI) migration](https://docs.github.com/en/enterprise-cloud@latest/migrations/using-github-enterprise-importer/migrating-organizations-with-github-enterprise-importer/migrating-organizations-from-githubcom-to-github-enterprise-cloud?tool=api#step-3-check-the-status-of-your-migration).
+
+### get-issue-type-of-issue.sh
+
+Gets the issue type of an issue. See: [Community Discussions Post](https://github.com/orgs/community/discussions/139933)
 
 ### get-label-usage-in-repository.sh
 
@@ -781,6 +807,18 @@ prints all repo names that have a property with name `production` and value `tru
 
 Gets the repository count in an organization
 
+### get-organization-self-hosted-runners-all-runners.sh
+
+Gets a list of all self-hosted runners in an organization, including org-level and repo-level runners.
+
+### get-organization-self-hosted-runners-organization-runners.sh
+
+Gets a list of self-hosted runners configured at the organization level for an organization.
+
+### get-organization-self-hosted-runners-repository-runners.sh
+
+Gets a list of all repo-level self-hosted runners in all repos in an organization.
+
 ### get-organization-team-members.sh
 
 Gets the members of a team
@@ -804,19 +842,13 @@ Gets the count of apps in all organizations in a given enterprise
 
 Gets a list of apps (and app information) in all organizations in a given enterprise
 
-### get-organizations-codeowner-usage.sh
-
-Gets the usage of CODEOWNERS files in all repositories in all organizations in a given enterprise (checks `HEAD` for `./`, `./.github`, and `./docs` and returns `TRUE` or `FALSE` for each repository)
-
 ### get-organizations-custom-repository-roles-count.sh
 
 Gets the count of custom repository roles in all organizations in a given enterprise
 
 ### get-organizations-discussions-count.sh
 
-Gets the usage of discussions in all repositories in all organizations in a given enterprise (org-wide discussions have to be created in a repository, so this covers that as well)
-
-
+Gets the count of discussions in all organizations in a given enterprise
 
 ### get-organizations-for-user.sh
 
@@ -830,9 +862,28 @@ Gets the count of organization projects (classic projects) in all organizations 
 
 Gets the count of projects (ProjectsV2) in all organizations in a given enterprise
 
+### get-organizations-repositories-codeowner-usage.sh
+
+Gets the usage of CODEOWNERS files in all repositories in all organizations in a given enterprise (checks `HEAD` for `./`, `./.github`, and `./docs` and returns `TRUE` or `FALSE` for each repository)
+
+### get-organizations-repositories-discussions-count.sh
+
+Gets the usage of discussions in all repositories in all organizations in a given enterprise (org-wide discussions have to be created in a repository, so this covers that as well)
+
+### get-organizations-self-hosted-runners-organization-runners.sh
+
+Gets a list of self-hosted runners configured at the organization level for all organizations in an enterprise
+
 ### get-organizations-settings.sh
 
 Gets the settings for all organizations in an enterprise
+
+### get-organizations-webhooks-count.sh
+
+Gets a count of webhooks (and webhook information) in all organizations in an enterprise
+
+> [!NOTE]
+> Requires a GitHub PAT instead of using the OAuth token with the `gh api` - the OAuth token can only retrieve webhooks it created
 
 ### get-organizations-webhooks.sh
 
@@ -870,6 +921,10 @@ Retrieve the download URL for a specific version of a package in GitHub Packages
 
 > [!NOTE]
 > No longer works for GitHub.com and deprecated for GHES 3.7+. See [Changelog post](https://github.blog/changelog/2022-08-18-deprecation-notice-graphql-for-packages/), [GraphQL breaking changes](https://docs.github.com/en/graphql/overview/breaking-changes#changes-scheduled-for-2022-11-21-1), and [GHES 3.7 deprecations](https://docs.github.com/en/enterprise-server@3.7/admin/release-notes#3.7.0-deprecations)
+
+### get-parent-issue-of-issue.sh
+
+Gets the parent issue of a given sub-issue (child). See: [Community Discussions Post](https://github.com/orgs/community/discussions/139932)
 
 ### get-projects-added-to-repository.sh
 
@@ -1047,6 +1102,14 @@ Retrieves all SSO enabled PATs users have created for an organization.
 
 Retrieves all SSO-enabled SSH keys users have created for an organization.
 
+### get-sub-issues-of-issue.sh
+
+Gets the sub-issues (children) of an issue (parent). See: [Community Discussions Post](https://github.com/orgs/community/discussions/139932)
+
+### get-sub-issues-summary-of-issue.sh
+
+Gets a summary of the sub-issues (children) of an issue (parent). See: [Community Discussions Post](https://github.com/orgs/community/discussions/139932)
+
 ### get-user-id.sh
 
 Retrieves the ID of a user for other GraphQL calls
@@ -1084,6 +1147,10 @@ Example output:
   }
 ],
 ```
+
+### invite-users-to-organization-from-list.sh
+
+Adds users to an organization team from a CSV input list.
 
 ### lock-repository-with-migration.sh
 
@@ -1126,6 +1193,14 @@ Removes an enterprise user. See notes:
 2. Get user id by one of the following:
     1. List org members and get the id from there: `./get-organization-members.sh`
     2. Get user id: `./get-user-id.sh`
+
+### remove-issue-issue-type.sh
+
+Remove the issue type from an issue (set it to `null`). See: [Community Discussions Post](https://github.com/orgs/community/discussions/139933)
+
+### remove-sub-issue-from-issue.sh
+
+Removes a sub-issue (child) from an issue (parent). See: [Community Discussions Post](https://github.com/orgs/community/discussions/139932)
 
 ### remove-users-from-organization.sh
 
@@ -1227,6 +1302,10 @@ Updates a branch protection rule for a given branch.
 ### update-enterprise-owner-organizational-role.sh
 
 Adds your account to an organization in an enterprise as an owner, member, or leave the organization. This requires the user running the script to be an Enterprise Owner.
+
+### update-issue-issue-type.sh
+
+Updates / sets the issue type for an issue. See: [Community Discussions Post](https://github.com/orgs/community/discussions/139933)
 
 ### verify-team-membership.sh
 
